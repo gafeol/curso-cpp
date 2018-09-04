@@ -1,6 +1,6 @@
 #include <cstdio>
 
-#define NUMERO_DE_TENTATIVAS 5
+const int NUMERO_DE_TENTATIVAS 5
 
 int main(){
 	// imprime o cabecalho do nosso jogo
@@ -29,13 +29,12 @@ int main(){
 			continue;
 		}
 
-		int acertou = (chute == numero_secreto);
-		int maior = chute > numero_secreto;
+		bool acertou = (chute == numero_secreto);
+		bool maior = chute > numero_secreto;
 
 		if(acertou) {
 			printf("Parabens! Voce acertou!\n");
 			printf("Jogue de novo, voce e um bom jogador!!\n");
-
 			break;
 		}
 			

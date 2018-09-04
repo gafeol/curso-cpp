@@ -2,14 +2,14 @@
 #include <cstdlib>
 #include <ctime>
 
-#define NUMERO_DE_TENTATIVAS 3
+const int NUMERO_DE_TENTATIVAS 3
 
 int main() {
     printf("************************************\n");
     printf("* Bem vindo ao Jogo de Adivinhação *\n");
     printf("************************************\n");
 
-    int nao_acertou = 1;
+    bool nao_acertou = true;
     int tentativas = 1;
     double pontos = 1000.0;
 
@@ -29,8 +29,8 @@ int main() {
 
         printf("Seu %do. chute foi %d\n", tentativas, chute);
 
-        int acertou = chute == numero_secreto;
-        int maior = chute > numero_secreto;
+        bool acertou = chute == numero_secreto;
+        bool maior = chute > numero_secreto;
 
         if(acertou) {
 			nao_acertou = 0;
