@@ -29,7 +29,7 @@ int main(){
 			continue;
 		}
 
-		bool acertou = (chute == numero_secreto);
+		bool acertou = chute == numero_secreto;
 		bool maior = chute > numero_secreto;
 
 		if(acertou) {
