@@ -1,21 +1,21 @@
 #include <cstdio>
 
 int main() {
-  int op, a, b;
-  scanf("%d", &op);
-  scanf("%d", &a);
-  scanf("%d", &b);
+	int operacao, x, y;
+	scanf("%d", &operacao);
+	scanf("%d", &x);
+	scanf("%d", &y);
 
-  if(op==1) { 
-    printf("%d", a + b);
-  }
-  else if(op==2) { 
-    printf("%d", a - b);
-  }
-  else if(op==3) { 
-    printf("%d", a / b);
-  }
-  else if(op==4) { 
-    printf("%d", a * b);
-  }
+	if(operacao == 1) { 
+		printf("%d", x + y);
+	}
+	else if(operacao == 2) { 
+		printf("%d", x - y);
+	}
+	else if(operacao == 3) { 
+		printf("%d", x / y);
+	}
+	else if(operacao == 4) { 
+		printf("%d", x * y);
+	}
 }

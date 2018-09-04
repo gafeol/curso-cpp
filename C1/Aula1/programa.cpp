@@ -6,7 +6,7 @@ int main(){
 	printf("* Bem vindo ao nosso jogo de adivinhacao *\n");	
 	printf("******************************************\n");
 
-	int numeroSecreto = 42;
+	int numero_secreto = 42;
 
 	int chute;
 

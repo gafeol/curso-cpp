@@ -9,16 +9,16 @@ int main() {
     printf("* Bem vindo ao Jogo de Adivinhação *\n");
     printf("************************************\n");
 
-    int chute;
-    int acertou = 0;
+    int nao_acertou = 1;
     int tentativas = 1;
-    double pontos = 1000;
+    double pontos = 1000.0;
 
     srand(time(0));
-    int numerosecreto = rand() % 100;
+    int numero_secreto = rand() % 100;
 
-    while(!acertou) {
+    while(nao_acertou) {
 
+	int chute;
         printf("Qual é o seu %do. chute? ", tentativas);
         scanf("%d", &chute);
 
@@ -29,10 +29,11 @@ int main() {
 
         printf("Seu %do. chute foi %d\n", tentativas, chute);
 
-        acertou = chute == numerosecreto;
-        int maior = chute > numerosecreto;
+        int acertou = chute == numero_secreto;
+        int maior = chute > numero_secreto;
 
         if(acertou) {
+			nao_acertou = 0;
             printf("Parabéns! Você acertou!\n");
         } else if(maior) {
             printf("Seu chute foi maior do que o número secreto!\n");
@@ -42,11 +43,10 @@ int main() {
 
         tentativas++;
 
-        double pontosperdidos = abs(chute - numerosecreto) / 2.0;
-        pontos = pontos - pontosperdidos;
+        double pontos_perdidos = abs(chute - numero_secreto) / 2.0;
+        pontos = pontos - pontos_perdidos;
     }
 
-    printf("Você fez %.2f pontos", pontos);
+    printf("Você fez %.2f pontos\n", pontos);
     printf("Obrigado por jogar!\n");
-
 }
