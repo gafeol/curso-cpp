@@ -1,4 +1,5 @@
-#include <cstdio>
+#include <iostream> 
+using namespace std;
 
 int main() {
   int soma = 0;
@@ -6,5 +7,5 @@ int main() {
     soma = soma + i;
   }
 
-  printf("A soma eh %d", soma);
+  cout << "A soma eh " << soma;
 }

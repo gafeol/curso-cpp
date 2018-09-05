@@ -1,4 +1,4 @@
-#include <cstdio>
+#include <iostream> 
 #include <string>
 using namespace std;
 
@@ -27,16 +27,16 @@ int main() {
             }
 
             if(achou) {
-                printf("%c ", palavra_secreta[i]);
+                cout << palavra_secreta[i] << " ";
             } else {
-                printf("_ ");
+                cout << "_ ";
             }
         }
-        printf("\n");
+        cout << endl;
 
         char chute;
-        printf("Qual letra? ");
-        scanf(" %c", &chute);
+        cout << "Qual letra? ";
+        cin >> chute;
 
         chutes[tentativas] = chute;
         tentativas++;

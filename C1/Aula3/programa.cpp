@@ -1,13 +1,14 @@
-#include <cstdio>
-#include <cstdlib>
+#include <iostream> 
+#include <iomanip>
 #include <ctime>
+using namespace std;
 
-const int NUMERO_DE_TENTATIVAS 3
+const int NUMERO_DE_TENTATIVAS = 3;
 
 int main() {
-    printf("************************************\n");
-    printf("* Bem vindo ao Jogo de Adivinhação *\n");
-    printf("************************************\n");
+    cout << "************************************" << endl;
+    cout << "* Bem vindo ao Jogo de Adivinhação *" << endl;
+    cout << "************************************" << endl;
 
     bool nao_acertou = true;
     int tentativas = 1;
@@ -19,26 +20,26 @@ int main() {
     while(nao_acertou) {
 
 		int chute;
-        printf("Qual é o seu %do. chute? ", tentativas);
-        scanf("%d", &chute);
+        cout << "Qual é o seu " << tentativas << "o. chute? ";
+        cin >> chute;
 
         if(chute < 0) {
-            printf("Você não pode chutar números negativos\n");
+            cout << "Você não pode chutar números negativos" << endl;
             continue;
         }
 
-        printf("Seu %do. chute foi %d\n", tentativas, chute);
+        cout << "Seu " << tentativas << "o. chute foi " << chute << endl;
 
         bool acertou = chute == numero_secreto;
         bool maior = chute > numero_secreto;
 
         if(acertou) {
 			nao_acertou = 0;
-            printf("Parabéns! Você acertou!\n");
+            cout << "Parabéns! Você acertou!" << endl;
         } else if(maior) {
-            printf("Seu chute foi maior do que o número secreto!\n");
+            cout << "Seu chute foi maior do que o número secreto!" << endl;
         } else {
-            printf("Seu chute foi menor do que o número secreto!\n");
+            cout << "Seu chute foi menor do que o número secreto!" << endl;
         }
 
         tentativas++;
@@ -47,7 +48,11 @@ int main() {
         pontos = pontos - pontos_perdidos;
     }
 
-    printf("Você fez %.2f pontos\n", pontos);
-    printf("Obrigado por jogar!\n");
 
+    cout.precision(2);  
+    cout << fixed;
+    // Equivalente ao %.2f
+
+    cout << "Você fez " << pontos << " pontos" << endl;
+    cout << "Obrigado por jogar!" << endl;
 }

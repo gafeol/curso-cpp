@@ -1,21 +1,22 @@
-#include <cstdio>
+#include <iostream> 
+using namespace std;
 
 int main() {
 	int operacao, x, y;
-	scanf("%d", &operacao);
-	scanf("%d", &x);
-	scanf("%d", &y);
+	cin >> operacao;
+	cin >> x;
+	cin >> y;
 
 	if(operacao == 1) { 
-		printf("%d", x + y);
+		cout << x + y;
 	}
 	else if(operacao == 2) { 
-		printf("%d", x - y);
+		cout << x - y;
 	}
 	else if(operacao == 3) { 
-		printf("%d", x / y);
+		cout << x / y;
 	}
 	else if(operacao == 4) { 
-		printf("%d", x * y);
+		cout << x * y;
 	}
 }

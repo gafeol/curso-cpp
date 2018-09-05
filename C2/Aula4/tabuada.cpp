@@ -1,7 +1,8 @@
-#include <cstdio>
+#include <iostream> 
+using namespace std;
 
 void abertura(int numero){
-	printf("Tabuada do %d\n\n",numero);
+	cout << "Tabuada do " << numero << endl << endl;
 }
 
 int main() {
@@ -10,6 +11,6 @@ int main() {
 	abertura(multiplicador);
 
 	for(int i = 1; i<= 10; i++){
-		printf("%d x %d = %d\n", multiplicador, i, multiplicador*i);
+		cout << multiplicador << " x " << i << " = " << multiplicador*i << endl;
 	}
 }

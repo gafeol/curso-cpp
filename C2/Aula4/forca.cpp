@@ -1,4 +1,4 @@
-#include <cstdio>
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -7,46 +7,44 @@ char chutes[26];
 int tentativas = 0;
 
 void abertura() {
-    printf("/****************/\n");
-    printf("/ Jogo de Forca */\n");
-    printf("/****************/\n\n");
+    cout << "/****************/" << endl;
+    cout << "/ Jogo de Forca */" << endl;
+    cout << "/****************/" << endl << endl;
 }
 
 void chuta() {
     char chute;
-    printf("Qual letra? ");
-    scanf(" %c", &chute);
+    cout << "Qual letra? ";
+    cin >> chute;
 
     chutes[tentativas] = chute;
+    tentativas++;
 }
 
-int ja_chutou(char letra) {
-    bool achou = false;
+bool ja_chutou(char letra) {
     for(int j = 0; j < tentativas; j++) {
         if(chutes[j] == letra) {
-            achou = true;
-            break;
+            return true;
         }
     }
-    return achou;
+    return false;
 }
 
 void desenha_forca() {
 
-    printf("Você já deu %d chutes\n", tentativas);
+    cout << "Você já deu " << tentativas << " chutes" << endl;
 
     int tamanho_palavra = palavra_secreta.size(); 
 
     for(int i = 0; i < tamanho_palavra; i++) {
         if(ja_chutou(palavra_secreta[i])) {
-            printf("%c ", palavra_secreta[i]);
+            cout << palavra_secreta[i] << " ";
         } else {
-            printf("_ ");
+            cout << "_ ";
         }
 
     }
-    printf("\n");
-
+    cout << endl;
 }
 
 void escolhe_palavra() {
@@ -65,8 +63,6 @@ int main() {
 
         desenha_forca();
         chuta();
-
-        tentativas++;
 
     } while (nao_acertou && nao_enforcou);
 

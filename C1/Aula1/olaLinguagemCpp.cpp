@@ -1,5 +1,6 @@
-#include <cstdio>
+#include <iostream> 
+using namespace std;
 
 int main() {
-	printf("Ola lingaguem C++");
+	cout << "Ola lingaguem C++";
 }

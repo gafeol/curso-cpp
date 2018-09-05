@@ -1,15 +1,16 @@
-#include <cstdio>
+#include <iostream>
+using namespace std;
 
 int main() {
   int x;
   int y;
 
-  printf("Primeiro valor: ");
-  scanf("%d", &x);
+  cout << "Primeiro valor: ";
+  cin >> x;
 
-  printf("Segundo valor: ");
-  scanf("%d", &y);
+  cout << "Segundo valor: ";
+  cin >> y;
 
-  int m = x * y;
-  printf("A multiplicacao de %d por %d eh igual a %d\n", x, y, m);
+  int resultado = x * y;
+  cout << "A multiplicacao de " << x << " por " << y << " eh igual a " <<  resultado;
 }

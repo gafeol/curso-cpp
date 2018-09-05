@@ -1,12 +1,13 @@
-#include <cstdio>
+#include <iostream> 
+using namespace std;
 
 int main() {
   int numero;
-  printf("Qual tabuada você quer?");
-  scanf("%d", &numero);
+  cout << "Qual tabuada você quer? ";
+  cin >> numero;
 
   for(int i = 0; i <= 10; i++) {
     int multiplicacao = numero * i;
-    printf("%d x %d = %d\n", numero, i, multiplicacao);
+    cout << numero << " x " << i << " = " << multiplicacao << endl;
   }
 }

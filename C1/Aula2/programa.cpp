@@ -1,12 +1,13 @@
-#include <cstdio>
+#include <iostream> 
+using namespace std;
 
-const int NUMERO_DE_TENTATIVAS 5
+const int NUMERO_DE_TENTATIVAS = 5;
 
 int main(){
 	// imprime o cabecalho do nosso jogo
-	printf("******************************************\n");
-	printf("* Bem vindo ao nosso jogo de adivinhacao *\n");	
-	printf("******************************************\n");
+	cout << "******************************************" << endl;
+	cout << "* Bem vindo ao nosso jogo de adivinhacao *" << endl;	
+	cout << "******************************************" << endl;
 
 	int numero_secreto = 42;
 
@@ -14,18 +15,14 @@ int main(){
 	int tentativas = 1;
 
 	while(1) {
-	//for(int i = 1; i <= NUMERO_DE_TENTATIVAS; i++) {
-		//printf("Tentativa %d de %d\n", i, NUMERO_DE_TENTATIVAS);
-		printf("Tentativa %d\n", tentativas);
-		printf("Qual e o seu chute?");
+		cout << "Tentativa " << tentativas << endl;
+		cout << "Qual e o seu chute?";
 
-		scanf("%d", &chute);
-		printf("Seu chute foi %d\n", chute);
+		cin >> chute;
+		cout << "Seu chute foi " << chute << endl;
 
 		if(chute < 0) {
-			printf("Voce nao pode chutar numeros negativos\n");
-			//i--;
-
+			cout << "Voce nao pode chutar numeros negativos" << endl;
 			continue;
 		}
 
@@ -33,22 +30,22 @@ int main(){
 		bool maior = chute > numero_secreto;
 
 		if(acertou) {
-			printf("Parabens! Voce acertou!\n");
-			printf("Jogue de novo, voce e um bom jogador!!\n");
+			cout << "Parabens! Voce acertou!" << endl;
+			cout << "Jogue de novo, voce e um bom jogador!!" << endl;
 			break;
 		}
 			
 		else if(maior) {
-				printf("Seu chute foi maior que o numero secreto\n");
+			cout << "Seu chute foi maior que o numero secreto" << endl;
 		}
 
 		else {
-			printf("Seu chute foi menor que o numero secreto\n");
+			cout << "Seu chute foi menor que o numero secreto" << endl;
 		}
 
 		tentativas++;
 	}
 
-	printf("Fim de jogo.\n");
-	printf("Voce acertou em %d tentativas", tentativas);
+	cout << "Fim de jogo." << endl;
+	cout << "Voce acertou em " << tentativas << " tentativas" << endl;
 }
