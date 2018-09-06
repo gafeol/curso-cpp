@@ -59,10 +59,8 @@ int main() {
     abertura();
 
     do {
-
         desenha_forca();
         chuta();
-
     } while (jogo_continua(nao_acertou, nao_enforcou));
 
 }
