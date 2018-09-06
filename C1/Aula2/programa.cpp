@@ -9,7 +9,7 @@ int main(){
 	cout << "* Bem vindo ao nosso jogo de adivinhacao *" << endl;	
 	cout << "******************************************" << endl;
 
-	int numero_secreto = 42;
+	const int numero_secreto = 42;
 
 	int chute;
 	int tentativas = 1;

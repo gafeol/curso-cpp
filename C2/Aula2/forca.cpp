@@ -5,7 +5,7 @@ using namespace std;
 int main() {
 
     string palavra_secreta;
-    palavra_secreta = "MELANCIA";
+    const string palavra_secreta = "MELANCIA";
     int tamanho_palavra = palavra_secreta.size();
 
     bool nao_acertou = true;

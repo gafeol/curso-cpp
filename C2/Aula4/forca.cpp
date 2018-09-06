@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-string palavra_secreta;
+const string palavra_secreta = "MELANCIA";
 char chutes[26];
 int tentativas = 0;
 
@@ -47,8 +47,8 @@ void desenha_forca() {
     cout << endl;
 }
 
-void escolhe_palavra() {
-    palavra_secreta = "MELANCIA";
+bool jogo_continua(bool nao_acertou, bool nao_enforcou){
+    return (nao_acertou && nao_enforcou);
 }
 
 int main() {
@@ -57,13 +57,12 @@ int main() {
     bool nao_enforcou = true;
 
     abertura();
-    escolhe_palavra();
 
     do {
 
         desenha_forca();
         chuta();
 
-    } while (nao_acertou && nao_enforcou);
+    } while (jogo_continua(nao_acertou, nao_enforcou));
 
 }
