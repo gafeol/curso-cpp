@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-const string palavra_secreta = "MELANCIA";
+const string PALAVRA_SECRETA = "MELANCIA";
 char chutes[26];
 int tentativas = 0;
 
@@ -34,11 +34,9 @@ void desenha_forca() {
 
     cout << "Você já deu " << tentativas << " chutes" << endl;
 
-    int tamanho_palavra = palavra_secreta.size(); 
-
-    for(int i = 0; i < tamanho_palavra; i++) {
-        if(ja_chutou(palavra_secreta[i])) {
-            cout << palavra_secreta[i] << " ";
+    for(int i = 0; i < PALAVRA_SECRETA.size(); i++) {
+        if(ja_chutou(PALAVRA_SECRETA[i])) {
+            cout << PALAVRA_SECRETA[i] << " ";
         } else {
             cout << "_ ";
         }

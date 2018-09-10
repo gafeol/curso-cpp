@@ -33,13 +33,16 @@ bool ja_chutou(char letra) {
     return false;
 }
 
+bool nao_chutou(char letra) {
+    return !ja_chutou(letra);
+}
+
 void desenha_forca() {
 
     cout << "Você já deu " << chutes_dados << " chutes" << endl;
 
-    int tamanho_palavra = palavra_secreta.size(); 
 
-    for(int i = 0; i < tamanho_palavra; i++) {
+    for(int i = 0; i < palavra_secreta.size(); i++) {
         if(ja_chutou(palavra_secreta[i])) {
             cout << palavra_secreta[i] << " ";
         } else {
@@ -55,27 +58,30 @@ bool enforcou() {
 
     for(int i = 0; i < chutes_dados; i++) {
 
-        int existe = 0;
+        int nao_existe = 1;
 
-        int tamanho_palavra = palavra_secreta.size();
-        for(int j = 0; j < tamanho_palavra; j++) {
+        for(int j = 0; j < palavra_secreta.size(); j++) {
             if(chutes[i] == palavra_secreta[j]) {
-                existe = 1;
+                nao_existe = 0;
                 break;
             }
         }
 
-        if(!existe) erros++;
+        if (nao_existe) {
+            erros++;
+        }
     }
 
     return erros >= 5;
 }
 
+bool nao_enforcou() {
+    return !enforcou();
+}
+
 bool ganhou() {
-    int tamanho_palavra = palavra_secreta.size();
-    for(int i = 0; i < tamanho_palavra; i++) {
-        bool nao_chutou = !ja_chutou(palavra_secreta[i]);
-        if(nao_chutou) {
+    for(int i = 0; i < palavra_secreta.size(); i++) {
+        if(nao_chutou(palavra_secreta[i])) {
             return false;
         }
     }
@@ -83,16 +89,17 @@ bool ganhou() {
     return true;
 }
 
-bool jogo_continua(){
-    bool nao_ganhou = !ganhou();
-    bool nao_enforcou = !enforcou();
-    return nao_ganhou && nao_enforcou;
+bool nao_ganhou() {
+    return !ganhou();
 }
 
+bool jogo_continua(){
+    return nao_ganhou() && nao_enforcou();
+}
 
 void escolhe_palavra() {
     ifstream arquivo_input;
-    arquivo_input.open("palavras.txt");
+    arquivo_input.open(BANCO_PALAVRAS);
 
     if (arquivo_input.is_open()) {
 
@@ -100,9 +107,9 @@ void escolhe_palavra() {
         arquivo_input >> quantidade_palavras;
 
         srand(time(0));
-        int randomico = rand() % quantidade_palavras;
+        int aleatorio = rand() % quantidade_palavras;
 
-        for (int i = 0; i <= randomico; i++) {
+        for (int i = 0; i <= aleatorio; i++) {
             arquivo_input >> palavra_secreta;
         }
         arquivo_input.close();

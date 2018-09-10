@@ -10,8 +10,7 @@ char chutes[26];
 int chutes_dados = 0;
 
 bool letra_existe(char letra) {
-    int tamanho_palavra = palavra_secreta.size();
-    for(int j = 0; j < tamanho_palavra; j++) {
+    for(int j = 0; j < palavra_secreta.size(); j++) {
         if(letra == palavra_secreta[j]) {
             return true;
         }
@@ -36,14 +35,21 @@ bool enforcou() {
     return chutes_errados() >= 5;
 }
 
+bool nao_enforcou() {
+    return !enforcou();
+}
+
 bool ganhou() {
-    int tamanho_palavra = palavra_secreta.size();
-    for(int i = 0; i < tamanho_palavra; i++) {
+    for(int i = 0; i < palavra_secreta.size(); i++) {
         if(!ja_chutou(palavra_secreta[i])) {
             return false;
         }
     }
     return true;
+}
+
+bool nao_ganhou(){
+    return !ganhou();
 }
 
 void abertura() {
@@ -76,6 +82,10 @@ bool ja_chutou(char letra) {
     return false;
 }
 
+bool nao_chutou(char letra){
+    return !ja_chutou(letra);
+}
+
 void desenha_forca() {
 
     int erros = chutes_errados();
@@ -90,8 +100,7 @@ void desenha_forca() {
     printf("_|___           \n");
     printf("\n\n");
 
-    int tamanho_palavra = palavra_secreta.size();
-    for(int i = 0; i < tamanho_palavra; i++) {
+    for(int i = 0; i < palavra_secreta.size(); i++) {
         if(ja_chutou(palavra_secreta[i])) {
             cout << palavra_secreta[i] << " ";
         } else {
@@ -106,7 +115,7 @@ void desenha_forca() {
 
 void escolhe_palavra() {
     ifstream arquivo_input;
-    arquivo_input.open("palavras.txt");
+    arquivo_input.open(BANCO_PALAVRAS);
 
     if (arquivo_input.is_open()) {
 
@@ -138,7 +147,7 @@ void adiciona_palavra() {
         cin >> nova_palavra;
 
         fstream arquivo;
-        arquivo.open("palavras.txt", ios::in | ios::out);
+        arquivo.open(BANCO_PALAVRAS, ios::in | ios::out);
         if(arquivo.is_open()){
             int numero_palavras = 0;
             arquivo >> numero_palavras;
@@ -160,9 +169,7 @@ void adiciona_palavra() {
 }
 
 bool jogo_continua(){
-    bool nao_ganhou = !ganhou();
-    bool nao_enforcou = !enforcou();
-    return nao_ganhou && nao_enforcou;
+    return nao_ganhou() && nao_enforcou();
 }
 
 int main() {

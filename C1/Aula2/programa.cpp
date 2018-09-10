@@ -9,7 +9,7 @@ int main(){
 	cout << "* Bem vindo ao nosso jogo de adivinhacao *" << endl;	
 	cout << "******************************************" << endl;
 
-	const int numero_secreto = 42;
+	const int NUMERO_SECRETO = 42;
 
 	int chute;
 	int tentativas = 1;
@@ -26,8 +26,8 @@ int main(){
 			continue;
 		}
 
-		bool acertou = chute == numero_secreto;
-		bool maior = chute > numero_secreto;
+		bool acertou = chute == NUMERO_SECRETO;
+		bool maior = chute > NUMERO_SECRETO;
 
 		if(acertou) {
 			cout << "Parabens! Voce acertou!" << endl;

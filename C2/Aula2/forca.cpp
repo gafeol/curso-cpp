@@ -4,9 +4,7 @@ using namespace std;
 
 int main() {
 
-    string palavra_secreta;
-    const string palavra_secreta = "MELANCIA";
-    int tamanho_palavra = palavra_secreta.size();
+    const string PALAVRA_SECRETA = "MELANCIA";
 
     bool nao_acertou = true;
     bool nao_enforcou = true;
@@ -16,18 +14,18 @@ int main() {
 
     do {
 
-        for(int i = 0; i < tamanho_palavra; i++) {
+        for(int i = 0; i < PALAVRA_SECRETA.size(); i++) {
             bool achou = false;
 
             for(int j = 0; j < tentativas; j++) {
-                if(chutes[j] == palavra_secreta[i]) {
+                if(chutes[j] == PALAVRA_SECRETA[i]) {
                     achou = true;
                     break;
                 }
             }
 
             if(achou) {
-                cout << palavra_secreta[i] << " ";
+                cout << PALAVRA_SECRETA[i] << " ";
             } else {
                 cout << "_ ";
             }
