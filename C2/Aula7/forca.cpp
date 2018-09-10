@@ -58,15 +58,24 @@ void abertura() {
     cout << "/****************/" << endl << endl;
 }
 
+void mensagem_acerto (char chute) {
+    cout << endl << "Você acertou: a palavra tem a letra " << chute << endl << endl;
+}
+
+void mensagem_erro (char chute) {
+    cout << endl << "Você errou: a palavra NÃO tem a letra " << chute << endl << endl;
+}
+
 void chuta() {
     char chute;
     cout << "Qual letra? ";
     cin >> chute;
 
     if(letra_existe(chute)) {
-        cout << endl << "Você acertou: a palavra tem a letra " << chute << endl << endl;
-    } else {
-        cout << endl << "Você errou: a palavra NÃO tem a letra " << chute << endl << endl;
+        mensagem_acerto(chute);
+    } 
+    else {
+        mensagem_erro(chute);
     }
 
     chutes[chutes_dados] = chute;
