@@ -99,7 +99,7 @@ bool jogo_continua(){
 
 void escolhe_palavra() {
     ifstream arquivo_input;
-    arquivo_input.open(BANCO_PALAVRAS);
+    arquivo_input.open(ARQUIVO_PALAVRAS);
 
     if (arquivo_input.is_open()) {
 

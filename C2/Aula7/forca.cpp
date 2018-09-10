@@ -124,7 +124,7 @@ void desenha_forca() {
 
 void escolhe_palavra() {
     ifstream arquivo_input;
-    arquivo_input.open(BANCO_PALAVRAS);
+    arquivo_input.open(ARQUIVO_PALAVRAS);
 
     if (arquivo_input.is_open()) {
 
@@ -156,7 +156,7 @@ void adiciona_palavra() {
         cin >> nova_palavra;
 
         fstream arquivo;
-        arquivo.open(BANCO_PALAVRAS, ios::in | ios::out);
+        arquivo.open(ARQUIVO_PALAVRAS, ios::in | ios::out);
         if(arquivo.is_open()){
             int numero_palavras = 0;
             arquivo >> numero_palavras;

@@ -1,7 +1,7 @@
 #include <string> 
 using namespace std;
 
-const string BANCO_PALAVRAS = "palavras.txt";
+const string ARQUIVO_PALAVRAS = "palavras.txt";
 
 void abertura();
 void chuta();
