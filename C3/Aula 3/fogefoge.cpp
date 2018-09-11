@@ -57,12 +57,11 @@ void move(char direcao) {
 			break;
 	}
 
-	if(!pode_andar(&mapa, HEROI, proximo_x, proximo_y))
-		return;
-
-	move_personagem(&mapa, heroi.x, heroi.y, proximo_x, proximo_y);
-	heroi.x = proximo_x;
-	heroi.y = proximo_y;
+	if (pode_andar(&mapa, HEROI, proximo_x, proximo_y)) {
+		move_personagem(&mapa, heroi.x, heroi.y, proximo_x, proximo_y);
+		heroi.x = proximo_x;
+		heroi.y = proximo_y;
+	}
 }
 
 bool movimento_fantasma(int x_atual, int y_atual, 
