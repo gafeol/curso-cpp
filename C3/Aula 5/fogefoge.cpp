@@ -31,7 +31,7 @@ bool eh_direcao(char direcao) {
 		direcao == DIREITA;
 }
 
-void move(char direcao) {
+void move_heroi(char direcao) {
 
 	int proxima_linha = heroi.linha;
 	int proxima_coluna = heroi.coluna;
@@ -85,7 +85,7 @@ bool movimento_fantasma(int linha_atual, int coluna_atual,
 	return false;
 }
 
-void fantasmas() {
+void move_fantasmas() {
 	Mapa copia;
 
 	copia_mapa(&copia, &mapa);
@@ -162,10 +162,10 @@ int main() {
 			explode_pilula();
 		}
 		else if(eh_direcao(comando)) {
-			move(comando);
+			move_heroi(comando);
 		}
 
-		fantasmas();
+		move_fantasmas();
 
 	} while (nao_acabou());
 

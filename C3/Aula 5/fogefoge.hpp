@@ -10,10 +10,10 @@ const char BOMBA = 'b';
 bool ganhou();
 bool perdeu();
 bool nao_acabou();
-void move(char direcao);
+void move_heroi(char direcao);
  
 bool eh_direcao(char direcao);
-void fantasmas();
+void move_fantasmas();
 void explode_pilula();
 void explode_pilula_recursivo(int linha, int coluna, int soma_linha, int soma_coluna, int qtd);
 void inicializa_aleatorio();

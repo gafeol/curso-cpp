@@ -31,7 +31,7 @@ bool movimento_fantasma(int linha_atual, int coluna_atual,
 	return false;
 }
 
-void fantasmas() {
+void move_fantasmas() {
 	Mapa copia;
 
 	copia_mapa(&copia, &mapa);
@@ -71,7 +71,7 @@ bool direcao_invalida(char direcao) {
 		direcao != DIREITA;
 }
 
-void move(char direcao) {
+void move_heroi(char direcao) {
 
 	if(direcao_invalida(direcao)){
 		return;
@@ -161,10 +161,10 @@ int main() {
 			explode_pilula();
 		}
 		else {
-			move(comando);
+			move_heroi(comando);
 		}
 
-		fantasmas();
+		move_fantasmas();
 
 	} while(nao_acabou());
 

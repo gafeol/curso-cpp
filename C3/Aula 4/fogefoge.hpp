@@ -5,7 +5,7 @@ const char ESQUERDA = 'a';
 const char BOMBA = 'b';
 
 
-void move(char direcao);
+void move_heroi(char direcao);
 
 bool ganhou();
 bool perdeu();
@@ -13,7 +13,7 @@ bool nao_acabou();
 
 bool direcao_invalida(char direcao);
 
-void fantasmas();
+void move_fantasmas();
 
 bool movimento_fantasma(int linha_atual, int coluna_atual, 
 	int* linha_destino, int* coluna_destino);
