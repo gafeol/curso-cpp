@@ -67,8 +67,8 @@ bool encontra_caractere(Mapa* mapa, Posicao* posicao, char caractere) {
 	for(int i = 0; i < mapa->linhas; i++) {
 		for(int j = 0; j < mapa->colunas; j++) {
 			if(mapa->matriz[i][j] == caractere) {
-				posicao->x = i;
-				posicao->y = j;
+				posicao->linha = i;
+				posicao->coluna = j;
 				return true;
 			}
 		}
@@ -76,39 +76,39 @@ bool encontra_caractere(Mapa* mapa, Posicao* posicao, char caractere) {
 	return false;
 }
 
-bool pode_andar(Mapa* mapa, char personagem, int x, int y) {
+bool pode_andar(Mapa* mapa, char personagem, int linha, int coluna) {
 	return 
-		eh_valida(mapa, x, y) && 
-		!eh_parede(mapa, x, y) &&
-		!eh_personagem(mapa, personagem, x, y);
+		eh_valida(mapa, linha, coluna) && 
+		!eh_parede(mapa, linha, coluna) &&
+		!eh_personagem(mapa, personagem, linha, coluna);
 }
 
-bool eh_valida(Mapa* mapa, int x, int y) {
-	if(x >= mapa->linhas) 
+bool eh_valida(Mapa* mapa, int linha, int coluna) {
+	if(linha >= mapa->linhas) 
 		return false;
-	if(y >= mapa->colunas) 
+	if(coluna >= mapa->colunas) 
 		return false;
 
 	return true;	
 }
 
-bool eh_personagem(Mapa* mapa, char personagem, int x, int y) {
+bool eh_personagem(Mapa* mapa, char personagem, int linha, int coluna) {
 	return
-		mapa->matriz[x][y] == personagem;
+		mapa->matriz[linha][coluna] == personagem;
 }
 
-bool eh_parede(Mapa* mapa, int x, int y) {
+bool eh_parede(Mapa* mapa, int linha, int coluna) {
 	return 
-		mapa->matriz[x][y] == PAREDE_VERTICAL ||
-		mapa->matriz[x][y] == PAREDE_HORIZONTAL;
+		mapa->matriz[linha][coluna] == PAREDE_VERTICAL ||
+		mapa->matriz[linha][coluna] == PAREDE_HORIZONTAL;
 }
 
 
-void move_personagem(Mapa* mapa, int x_origem, int y_origem, 
-	int x_destino, int y_destino) {
+void move_personagem(Mapa* mapa, int linha_origem, int coluna_origem, 
+	int linha_destino, int coluna_destino) {
 
-	char personagem = mapa->matriz[x_origem][y_origem];
-	mapa->matriz[x_destino][y_destino] = personagem;
-	mapa->matriz[x_origem][y_origem] = VAZIO;
+	char personagem = mapa->matriz[linha_origem][coluna_origem];
+	mapa->matriz[linha_destino][coluna_destino] = personagem;
+	mapa->matriz[linha_origem][coluna_origem] = VAZIO;
 
 }

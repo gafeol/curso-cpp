@@ -65,7 +65,6 @@ void imprime_mapa(Mapa* mapa) {
 						break;
 					case VAZIO:
 						imprime_parte(desenho_vazio, parte);
-						break;
 				}
 				
 			}

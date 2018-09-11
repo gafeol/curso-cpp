@@ -8,22 +8,22 @@ Posicao heroi;
 bool tem_pilula = false;
 
 
-bool movimento_fantasma(int x_atual, int y_atual, 
-	int* x_destino, int* y_destino) {
+bool movimento_fantasma(int linha_atual, int coluna_atual, 
+	int* linha_destino, int* coluna_destino) {
 
 	int opcoes[4][2] = {
-		{ x_atual, y_atual+1},
-		{ x_atual+1, y_atual},
-		{ x_atual, y_atual-1},
-		{ x_atual-1, y_atual}
+		{ linha_atual, coluna_atual+1},
+		{ linha_atual+1, coluna_atual},
+		{ linha_atual, coluna_atual-1},
+		{ linha_atual-1, coluna_atual}
 	};
 
 	for(int i = 0; i < 10; i++) {
 		int direcao = rand() % 4;
 
 		if(pode_andar(&mapa, FANTASMA, opcoes[direcao][0], opcoes[direcao][1])) {
-			*x_destino = opcoes[direcao][0];
-			*y_destino = opcoes[direcao][1];
+			*linha_destino = opcoes[direcao][0];
+			*coluna_destino = opcoes[direcao][1];
 
 			return true;
 		}
@@ -41,14 +41,14 @@ void fantasmas() {
 
 			if(copia.matriz[i][j] == FANTASMA) {
 
-				int x_destino;
-				int y_destino;
+				int linha_destino;
+				int coluna_destino;
 
 				bool vai_andar = movimento_fantasma(i, j, 
-					&x_destino, &y_destino);
+					&linha_destino, &coluna_destino);
 
 				if(vai_andar) {
-					move_personagem(&mapa, i, j, x_destino, y_destino);
+					move_personagem(&mapa, i, j, linha_destino, coluna_destino);
 				}
 			}
 
@@ -77,65 +77,64 @@ void move(char direcao) {
 		return;
 	}
 
-	int proximo_x = heroi.x;
-	int proximo_y = heroi.y;
+	int proxima_linha = heroi.linha;
+	int proxima_coluna = heroi.coluna;
 
 	switch(direcao) {
 		case ESQUERDA:
-			proximo_y--;
+			proxima_coluna--;
 			break;
 		case CIMA:
-			proximo_x--;
+			proxima_linha--;
 			break;
 		case BAIXO:
-			proximo_x++;
+			proxima_linha++;
 			break;
 		case DIREITA:
-			proximo_y++;
-			break;
+			proxima_coluna++;
 	}
 
-	if (pode_andar(&mapa, HEROI, proximo_x, proximo_y)) {
-		if (eh_personagem(&mapa, PILULA, proximo_x, proximo_y)) {
+	if (pode_andar(&mapa, HEROI, proxima_linha, proxima_coluna)) {
+		if (eh_personagem(&mapa, PILULA, proxima_linha, proxima_coluna)) {
 			tem_pilula = true;
 		}
 
-		move_personagem(&mapa, heroi.x, heroi.y,
-						proximo_x, proximo_y);
-		heroi.x = proximo_x;
-		heroi.y = proximo_y;
+		move_personagem(&mapa, heroi.linha, heroi.coluna,
+						proxima_linha, proxima_coluna);
+		heroi.linha = proxima_linha;
+		heroi.coluna = proxima_coluna;
 	}
 }
 
 void explode_pilula() {
 	if(tem_pilula){
-		explode_pilula_recursivo(heroi.x, heroi.y, 0, 1, 3);
-		explode_pilula_recursivo(heroi.x, heroi.y, 0, -1, 3);
-		explode_pilula_recursivo(heroi.x, heroi.y, 1, 0, 3);
-		explode_pilula_recursivo(heroi.x, heroi.y, -1, 0, 3);
+		explode_pilula_recursivo(heroi.linha, heroi.coluna, 0, 1, 3);
+		explode_pilula_recursivo(heroi.linha, heroi.coluna, 0, -1, 3);
+		explode_pilula_recursivo(heroi.linha, heroi.coluna, 1, 0, 3);
+		explode_pilula_recursivo(heroi.linha, heroi.coluna, -1, 0, 3);
 
 		tem_pilula = false;
 	}
 }
 
-bool explode_posicao(Mapa* mapa, int x, int y){
-	if(!eh_valida(mapa, x, y))
+bool explode_posicao(Mapa* mapa, int linha, int coluna){
+	if(!eh_valida(mapa, linha, coluna))
 		return false;
-	if(eh_parede(mapa, x, y))
+	if(eh_parede(mapa, linha, coluna))
 		return false;
 	return true;
 }
 
-void explode_pilula_recursivo(int x, int y, int soma_x, int soma_y, int qtd) {
+void explode_pilula_recursivo(int linha, int coluna, int soma_linha, int soma_coluna, int qtd) {
 
 	if (qtd > 0) {
 
-		int novo_x = x + soma_x;
-		int novo_y = y + soma_y;
+		int nova_linha = linha + soma_linha;
+		int nova_coluna = coluna + soma_coluna;
 
-		if (explode_posicao(&mapa, novo_x, novo_y)) {
-			mapa.matriz[novo_x][novo_y] = VAZIO;
-			explode_pilula_recursivo(novo_x, novo_y, soma_x, soma_y, qtd - 1);
+		if (explode_posicao(&mapa, nova_linha, nova_coluna)) {
+			mapa.matriz[nova_linha][nova_coluna] = VAZIO;
+			explode_pilula_recursivo(nova_linha, nova_coluna, soma_linha, soma_coluna, qtd - 1);
 		}
 	}
 }

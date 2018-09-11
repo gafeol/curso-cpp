@@ -12,25 +12,24 @@ bool nao_acabou() {
 
 void move(char direcao) {
 
-	mapa.matriz[heroi.x][heroi.y] = '.';
+	mapa.matriz[heroi.linha][heroi.coluna] = '.';
 
 	switch(direcao) {
 		case 'a':
-			mapa.matriz[heroi.x][heroi.y-1] = '@';
-			heroi.y--;
+			mapa.matriz[heroi.linha][heroi.coluna-1] = '@';
+			heroi.coluna--;
 			break;
 		case 'w':
-			mapa.matriz[heroi.x-1][heroi.y] = '@';
-			heroi.x--;
+			mapa.matriz[heroi.linha-1][heroi.coluna] = '@';
+			heroi.linha--;
 			break;
 		case 's':
-			mapa.matriz[heroi.x+1][heroi.y] = '@';
-			heroi.x++;
+			mapa.matriz[heroi.linha+1][heroi.coluna] = '@';
+			heroi.linha++;
 			break;
 		case 'd':
-			mapa.matriz[heroi.x][heroi.y+1] = '@';
-			heroi.y++;
-			break;
+			mapa.matriz[heroi.linha][heroi.coluna+1] = '@';
+			heroi.coluna++;
 	}
 	
 }

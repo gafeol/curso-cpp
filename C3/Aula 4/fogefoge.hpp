@@ -15,10 +15,10 @@ bool direcao_invalida(char direcao);
 
 void fantasmas();
 
-bool movimento_fantasma(int x_atual, int y_atual, 
-	int* x_destino, int* y_destino);
+bool movimento_fantasma(int linha_atual, int coluna_atual, 
+	int* linha_destino, int* coluna_destino);
 
 void explode_pilula();
-bool explode_posicao(Mapa* mapa, int x, int y);
-void explode_pilula_recursivo(int x, int y, int soma_x, int soma_y, int qtd);
+bool explode_posicao(Mapa* mapa, int linha, int coluna);
+void explode_pilula_recursivo(int linha, int coluna, int soma_linha, int soma_coluna, int qtd);
 void inicializa_aleatorio();

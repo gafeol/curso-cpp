@@ -16,8 +16,8 @@ void libera_mapa(Mapa* mapa);
 void imprime_mapa(Mapa* mapa);
 
 struct Posicao {
-	int x;
-	int y;
+	int linha;
+	int coluna;
 };
 
 void encontra_caractere(Mapa* mapa, Posicao* posicao, char caractere);

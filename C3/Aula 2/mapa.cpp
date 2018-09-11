@@ -53,8 +53,8 @@ void encontra_caractere(Mapa* mapa, Posicao* posicao, char caractere) {
 	for(int i = 0; i < mapa->linhas; i++) {
 		for(int j = 0; j < mapa->colunas; j++) {
 			if(mapa->matriz[i][j] == caractere) {
-				posicao->x = i;
-				posicao->y = j;
+				posicao->linha = i;
+				posicao->coluna = j;
 				return;
 			}
 		}

@@ -18,8 +18,8 @@ struct Mapa {
 
 
 struct Posicao {
-	int x;
-	int y;
+	int linha;
+	int coluna;
 };
 
 
@@ -30,15 +30,15 @@ void aloca_mapa(Mapa* mapa);
 void imprime_mapa(Mapa* mapa);
 bool encontra_caractere(Mapa* mapa, Posicao* posicao, char caractere);
 
-bool eh_valida(Mapa* mapa, int x, int y);
-void move_personagem(Mapa* mapa, int x_origem, int y_origem, 
-	int x_destino, int y_destino);
+bool eh_valida(Mapa* mapa, int linha, int coluna);
+void move_personagem(Mapa* mapa, int linha_origem, int coluna_origem, 
+	int linha_destino, int coluna_destino);
 
 void copia_mapa(Mapa* destino, Mapa* origem);
 
-bool pode_andar(Mapa* mapa, char personagem, int x, int y);
+bool pode_andar(Mapa* mapa, char personagem, int linha, int coluna);
 
 bool eh_personagem(Mapa* mapa, char personagem, 
-	int x, int y);
+	int linha, int coluna);
 
-bool eh_parede(Mapa* mapa, int x, int y);
+bool eh_parede(Mapa* mapa, int linha, int coluna);

@@ -15,7 +15,7 @@ void move(char direcao);
 bool eh_direcao(char direcao);
 void fantasmas();
 void explode_pilula();
-void explode_pilula_recursivo(int x, int y, int soma_x, int soma_y, int qtd);
+void explode_pilula_recursivo(int linha, int coluna, int soma_linha, int soma_coluna, int qtd);
 void inicializa_aleatorio();
 
 
