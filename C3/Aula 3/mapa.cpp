@@ -63,12 +63,12 @@ void imprime_mapa(Mapa* mapa) {
 	}
 }
 
-int encontra_caractere(Mapa* mapa, Posicao* p, char c) {
+bool encontra_caractere(Mapa* mapa, Posicao* posicao, char caractere) {
 	for(int i = 0; i < mapa->linhas; i++) {
 		for(int j = 0; j < mapa->colunas; j++) {
-			if(mapa->matriz[i][j] == c) {
-				p->x = i;
-				p->y = j;
+			if(mapa->matriz[i][j] == caractere) {
+				posicao->x = i;
+				posicao->y = j;
 				return true;
 			}
 		}

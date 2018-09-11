@@ -26,7 +26,7 @@ struct Posicao {
 	int y;
 };
 
-int encontra_caractere(Mapa* mapa, Posicao* posicao, char caractere);
+bool encontra_caractere(Mapa* mapa, Posicao* posicao, char caractere);
 
 bool eh_valida(Mapa* mapa, int x, int y);
 bool eh_parede(Mapa* mapa, int x, int y);
