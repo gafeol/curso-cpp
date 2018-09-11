@@ -19,11 +19,11 @@ bool movimento_fantasma(int x_atual, int y_atual,
 	};
 
 	for(int i = 0; i < 10; i++) {
-		int posicao = rand() % 4;
+		int direcao = rand() % 4;
 
-		if(pode_andar(&mapa, FANTASMA, opcoes[posicao][0], opcoes[posicao][1])) {
-			*x_destino = opcoes[posicao][0];
-			*y_destino = opcoes[posicao][1];
+		if(pode_andar(&mapa, FANTASMA, opcoes[direcao][0], opcoes[direcao][1])) {
+			*x_destino = opcoes[direcao][0];
+			*y_destino = opcoes[direcao][1];
 
 			return true;
 		}
