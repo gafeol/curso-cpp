@@ -66,20 +66,19 @@ bool pode_andar(Mapa* mapa, char personagem, int linha, int coluna) {
 		!eh_personagem(mapa, personagem, linha, coluna);
 }
 
+void aloca_mapa(Mapa* mapa) {
+	mapa->matriz = new char*[mapa->linhas];
+	for(int i = 0; i < mapa->linhas; i++) {
+		mapa->matriz[i] = new char[mapa->colunas];
+	}
+}
+
 void libera_mapa(Mapa* mapa) {
 	for(int i = 0; i < mapa->linhas; i++) {
-		free(mapa->matriz[i]);
+		delete(mapa->matriz[i]);
 	}
-	free(mapa->matriz);
+	delete(mapa->matriz);
 }
-
-void aloca_mapa(Mapa* mapa) {
-	mapa->matriz = (char**) malloc(sizeof(char*) * mapa->linhas);
-	for(int i = 0; i < mapa->linhas; i++) {
-		mapa->matriz[i] = (char*) malloc(sizeof(char) * (mapa->colunas+1));
-	}
-}
-
 
 void le_mapa(Mapa* mapa) {
 	ifstream mapa_input;

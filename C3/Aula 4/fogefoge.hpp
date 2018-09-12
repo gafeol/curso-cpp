@@ -7,10 +7,6 @@ const char BOMBA = 'b';
 
 void move_heroi(char direcao);
 
-bool ganhou();
-bool perdeu();
-bool nao_acabou();
-
 bool direcao_invalida(char direcao);
 
 void move_fantasmas();
@@ -21,4 +17,3 @@ bool movimento_fantasma(int linha_atual, int coluna_atual,
 void explode_pilula();
 bool explode_posicao(Mapa* mapa, int linha, int coluna);
 void explode_pilula_recursivo(int linha, int coluna, int soma_linha, int soma_coluna, int qtd);
-void inicializa_aleatorio();

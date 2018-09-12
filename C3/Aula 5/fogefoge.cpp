@@ -4,24 +4,11 @@ using namespace std;
 #include "fogefoge.hpp"
 #include "mapa.hpp"
 #include "ui.hpp"
+#include "jogo.hpp"
 
 Mapa mapa;
 Posicao heroi;
 bool tem_pilula = false;
-
-bool perdeu() {
-	Posicao posicao;
-	return !encontra_caractere(&mapa, &posicao, HEROI);
-}
-
-bool ganhou() {
-	Posicao posicao;
-	return !encontra_caractere(&mapa, &posicao, FANTASMA);
-}
-
-bool nao_acabou(){
-	return !ganhou() && !perdeu();
-}
 
 bool eh_direcao(char direcao) {
 	return
@@ -141,10 +128,6 @@ void explode_pilula() {
 	}
 }
 
-void inicializa_aleatorio(){
-	srand(time(0));
-}
-
 int main() {
 	inicializa_aleatorio();
 	
@@ -167,7 +150,7 @@ int main() {
 
 		move_fantasmas();
 
-	} while (nao_acabou());
+	} while (nao_acabou(&mapa));
 
 	libera_mapa(&mapa);
 }

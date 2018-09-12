@@ -2,6 +2,7 @@
 using namespace std;
 #include "mapa.hpp"
 #include "fogefoge.hpp"
+#include "jogo.hpp"
 
 Mapa mapa;
 Posicao heroi;
@@ -58,11 +59,6 @@ void move_fantasmas() {
 	libera_mapa(&copia);
 }
 
-bool nao_acabou() {
-	Posicao pos;
-	return encontra_caractere(&mapa, &pos, HEROI);
-}
-
 bool direcao_invalida(char direcao) {
 	return 
 		direcao != ESQUERDA &&
@@ -92,8 +88,8 @@ void move_heroi(char direcao) {
 			break;
 		case DIREITA:
 			proxima_coluna++;
-	}
-
+	} 
+ 
 	if (pode_andar(&mapa, HEROI, proxima_linha, proxima_coluna)) {
 		if (eh_personagem(&mapa, PILULA, proxima_linha, proxima_coluna)) {
 			tem_pilula = true;
@@ -139,10 +135,6 @@ void explode_pilula_recursivo(int linha, int coluna, int soma_linha, int soma_co
 	}
 }
 
-void inicializa_aleatorio(){
-	srand(time(0));
-}
-
 int main() {
 	inicializa_aleatorio();
 	
@@ -166,7 +158,7 @@ int main() {
 
 		move_fantasmas();
 
-	} while(nao_acabou());
+	} while(nao_acabou(&mapa));
 
 	libera_mapa(&mapa);
 }

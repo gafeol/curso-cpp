@@ -26,12 +26,19 @@ void le_mapa(Mapa* mapa) {
 }
 
 void aloca_mapa(Mapa* mapa) {
-	mapa->matriz = (char**) malloc(sizeof(char*) * mapa->linhas);
-
+	mapa->matriz = new char*[mapa->linhas];
 	for(int i = 0; i < mapa->linhas; i++) {
-		mapa->matriz[i] = (char*) malloc(sizeof(char) * mapa->colunas + 1);
+		mapa->matriz[i] = new char[mapa->colunas];
 	}
 }
+
+void libera_mapa(Mapa* mapa) {
+	for(int i = 0; i < mapa->linhas; i++) {
+		delete(mapa->matriz[i]);
+	}
+	delete(mapa->matriz);
+}
+
 
 void copia_mapa(Mapa* destino, Mapa* origem) {
 	destino->linhas = origem->linhas;
@@ -43,15 +50,6 @@ void copia_mapa(Mapa* destino, Mapa* origem) {
 			destino->matriz[i][j] = origem->matriz[i][j];
 		}
 	}
-}
-
-
-void libera_mapa(Mapa* mapa) {
-	for(int i = 0; i < mapa->linhas; i++) {
-		free(mapa->matriz[i]);
-	}
-
-	free(mapa->matriz);
 }
 
 void imprime_mapa(Mapa* mapa) {

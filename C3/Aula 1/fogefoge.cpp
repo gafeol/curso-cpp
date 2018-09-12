@@ -31,18 +31,17 @@ void le_mapa() {
 }
 
 void aloca_mapa() {
-	mapa = (char**) malloc(sizeof(char*) * linhas);
-
+	mapa = new char*[linhas];
 	for(int i = 0; i < linhas; i++) {
-		mapa[i] = (char*) malloc(sizeof(char) * colunas + 1);
+		mapa[i] = new char[colunas];
 	}
 }
 
 void libera_mapa() {
 	for(int i = 0; i < linhas; i++) {
-		free(mapa[i]);
+		delete(mapa[i]);
 	}
-	free(mapa);
+	delete(mapa);
 }
 
 void imprime_mapa() {

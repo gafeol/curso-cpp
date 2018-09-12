@@ -3,28 +3,10 @@ using namespace std;
 
 #include "fogefoge.hpp"
 #include "mapa.hpp"
+#include "jogo.hpp"
 
 Mapa mapa;
 Posicao heroi;
-
-
-bool perdeu(){
-	Posicao posicao;
-	return !encontra_caractere(&mapa, &posicao, HEROI);
-}
-
-bool ganhou() {
-	Posicao posicao;
-	return !encontra_caractere(&mapa, &posicao, FANTASMA);
-}
-
-bool acabou() {
-	return ganhou() || perdeu();
-}
-
-bool nao_acabou() {
-	return !acabou();
-}
 
 bool direcao_invalida(char direcao) {
 	return
@@ -73,7 +55,6 @@ bool movimento_fantasma(int linha_atual, int coluna_atual,
 		{ linha_atual-1 , coluna_atual   }
 	};
 
-	srand(time(0));
 	for(int i = 0; i < 10; i++) {
 		int posicao = rand() % 4;
 
@@ -115,6 +96,7 @@ void fantasmas() {
 }
 
 int main() {
+	inicializa_aleatorio();
 	
 	le_mapa(&mapa);
 	encontra_caractere(&mapa, &heroi, HEROI);
@@ -128,7 +110,7 @@ int main() {
 		move(comando);
 		fantasmas();
 
-	} while (nao_acabou());
+	} while (nao_acabou(&mapa));
 
 	libera_mapa(&mapa);
 }
