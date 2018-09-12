@@ -20,32 +20,32 @@ bool eh_direcao(char direcao) {
 
 void move_heroi(char direcao) {
 
-	int proxima_linha = heroi.linha;
-	int proxima_coluna = heroi.coluna;
+	int linha_alvo = heroi.linha;
+	int coluna_alvo = heroi.coluna;
 
 	switch(direcao) {
 		case ESQUERDA:
-			proxima_coluna--;
+			coluna_alvo--;
 			break;
 		case CIMA:
-			proxima_linha--;
+			linha_alvo--;
 			break;
 		case BAIXO:
-			proxima_linha++;
+			linha_alvo++;
 			break;
 		case DIREITA:
-			proxima_coluna++;
+			coluna_alvo++;
 	}
 
-	if (pode_andar(&mapa, HEROI, proxima_linha, proxima_coluna)) {
+	if (pode_andar(&mapa, HEROI, linha_alvo, coluna_alvo)) {
 
-		if (eh_personagem(&mapa, PILULA, proxima_linha, proxima_coluna)) {
+		if (eh_personagem(&mapa, PILULA, linha_alvo, coluna_alvo)) {
 			tem_pilula = true;
 		}
 
-		move_personagem(&mapa, heroi.linha, heroi.coluna, proxima_linha, proxima_coluna);
-		heroi.linha = proxima_linha;
-		heroi.coluna = proxima_coluna;
+		move_personagem(&mapa, heroi.linha, heroi.coluna, linha_alvo, coluna_alvo);
+		heroi.linha = linha_alvo;
+		heroi.coluna = coluna_alvo;
 	}
 }
 
