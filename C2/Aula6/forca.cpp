@@ -2,12 +2,12 @@
 #include <string>
 #include <ctime>
 #include <fstream>
+#include <vector>
 #include "forca.hpp"
 using namespace std;
 
 string palavra_secreta;
-char chutes[26];
-int chutes_dados = 0;
+vector<char> chutes;
 
 void abertura() {
     cout << "/****************/" << endl;
@@ -20,12 +20,11 @@ void chuta() {
     cout << "Qual letra? ";
     cin >> chute;
 
-    chutes[chutes_dados] = chute;
-    chutes_dados++;
+    chutes.push_back(chute);
 }
 
 bool ja_chutou(char letra) {
-    for(int j = 0; j < chutes_dados; j++) {
+    for(int j = 0; j < chutes.size(); j++) {
         if(chutes[j] == letra) {
             return true;
         }
@@ -39,7 +38,7 @@ bool nao_chutou(char letra) {
 
 void desenha_forca() {
 
-    cout << "Você já deu " << chutes_dados << " chutes" << endl;
+    cout << "Você já deu " << chutes.size() << " chutes" << endl;
 
 
     for(int i = 0; i < palavra_secreta.size(); i++) {
@@ -56,7 +55,7 @@ void desenha_forca() {
 bool enforcou() {
     int erros = 0;
 
-    for(int i = 0; i < chutes_dados; i++) {
+    for(int i = 0; i < chutes.size(); i++) {
 
         int nao_existe = 1;
 

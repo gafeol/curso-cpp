@@ -1,5 +1,6 @@
 #include <iostream> 
 #include <string>
+#include <vector>
 using namespace std;
 
 int main() {
@@ -9,15 +10,14 @@ int main() {
     bool nao_acertou = true;
     bool nao_enforcou = true;
 
-    char chutes[26];
-    int tentativas = 0;
+    vector<char> chutes;
 
     do {
 
         for(int i = 0; i < PALAVRA_SECRETA.size(); i++) {
             bool achou = false;
 
-            for(int j = 0; j < tentativas; j++) {
+            for(int j = 0; j < chutes.size(); j++) {
                 if(chutes[j] == PALAVRA_SECRETA[i]) {
                     achou = true;
                     break;
@@ -36,8 +36,7 @@ int main() {
         cout << "Qual letra? ";
         cin >> chute;
 
-        chutes[tentativas] = chute;
-        tentativas++;
+        chutes.push_back(chute);
 
 
     } while (nao_acertou && nao_enforcou);

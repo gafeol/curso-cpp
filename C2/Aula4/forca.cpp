@@ -1,10 +1,10 @@
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 const string PALAVRA_SECRETA = "MELANCIA";
-char chutes[26];
-int tentativas = 0;
+vector<char> chutes;
 
 void abertura() {
     cout << "/****************/" << endl;
@@ -17,12 +17,11 @@ void chuta() {
     cout << "Qual letra? ";
     cin >> chute;
 
-    chutes[tentativas] = chute;
-    tentativas++;
+    chutes.push_back(chute);
 }
 
 bool ja_chutou(char letra) {
-    for(int j = 0; j < tentativas; j++) {
+    for(int j = 0; j < chutes.size(); j++) {
         if(chutes[j] == letra) {
             return true;
         }
@@ -32,7 +31,7 @@ bool ja_chutou(char letra) {
 
 void desenha_forca() {
 
-    cout << "Você já deu " << tentativas << " chutes" << endl;
+    cout << "Você já deu " << chutes.size() << " chutes" << endl;
 
     for(int i = 0; i < PALAVRA_SECRETA.size(); i++) {
         if(ja_chutou(PALAVRA_SECRETA[i])) {
