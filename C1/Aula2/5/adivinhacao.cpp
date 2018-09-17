@@ -1,8 +1,6 @@
 #include <iostream> 
 using namespace std;
 
-const int NUMERO_DE_TENTATIVAS = 5;
-
 int main(){
 	// imprime o cabecalho do nosso jogo
 	cout << "******************************************" << endl;
@@ -11,41 +9,46 @@ int main(){
 
 	const int NUMERO_SECRETO = 42;
 
-	int chute;
-	int tentativas = 1;
+	bool nao_acertou = true;
+	int tentativas = 0;
 
-	while(1) {
+	double pontos = 1000.0;
+
+	while(nao_acertou){
+		tentativas++;
+
+		int chute;
 		cout << "Tentativa " << tentativas << endl;
-		cout << "Qual e o seu chute?";
-
+		cout << "Qual e o seu chute? ";
 		cin >> chute;
 		cout << "Seu chute foi " << chute << endl;
 
-		if(chute < 0) {
-			cout << "Voce nao pode chutar numeros negativos" << endl;
-			continue;
-		}
 
 		bool acertou = chute == NUMERO_SECRETO;
 		bool maior = chute > NUMERO_SECRETO;
 
-		if(acertou) {
+		if (acertou) {
 			cout << "Parabens! Voce acertou!" << endl;
 			cout << "Jogue de novo, voce e um bom jogador!!" << endl;
-			break;
-		}
 			
-		else if(maior) {
+			nao_acertou  = false;
+		}
+		else if (maior) {
 			cout << "Seu chute foi maior que o numero secreto" << endl;
 		}
-
 		else {
 			cout << "Seu chute foi menor que o numero secreto" << endl;
 		}
 
-		tentativas++;
+		double pontos_perdidos = abs(chute - NUMERO_SECRETO)/2.0;
+		pontos = pontos - pontos_perdidos;
 	}
 
-	cout << "Fim de jogo." << endl;
+    cout << "Fim de jogo!" << endl;
 	cout << "Voce acertou em " << tentativas << " tentativas" << endl;
+
+    cout.precision(2);  
+    cout << fixed;
+	cout << "Pontuacao: " << pontos << endl;
+	
 }
