@@ -1,17 +1,13 @@
 #include <iostream>
 using namespace std;
 
-int main(){
+int main () {
 	// imprime o cabecalho do nosso jogo
 	cout << "******************************************" << endl;
-	cout << "* Bem vindo ao nosso jogo de adivinhacao *" << endl;	
+	cout << "* Bem vindo ao nosso jogo de adivinhação *" << endl;	
 	cout << "******************************************" << endl;
 
 	int numero_secreto = 42;
-
-	int chute;
-
-	cout << "Qual e o seu chute? ";
-	cin >> chute;
-	cout << "Seu chute foi " << chute << endl;
+	cout << "O número secreto é " << numero_secreto << ". Não conta pra ninguém!" << endl;
 }
+
