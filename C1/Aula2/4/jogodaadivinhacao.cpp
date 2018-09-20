@@ -2,7 +2,6 @@
 using namespace std;
 
 int main(){
-	// imprime o cabecalho do nosso jogo
 	cout << "******************************************" << endl;
 	cout << "* Bem vindo ao nosso jogo de adivinhação *" << endl;	
 	cout << "******************************************" << endl;
@@ -28,7 +27,7 @@ int main(){
 		bool maior = chute > NUMERO_SECRETO;
 
 		if (acertou) {
-			cout << "Parabens! Você acertou!" << endl;
+			cout << "Parabéns! Você acertou!" << endl;
 			cout << "Jogue de novo, voce e um bom jogador!!" << endl;
 			
 			nao_acertou  = false;
