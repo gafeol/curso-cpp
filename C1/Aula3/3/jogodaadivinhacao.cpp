@@ -2,21 +2,37 @@
 using namespace std;
 
 int main(){
-	// imprime o cabecalho do nosso jogo
 	cout << "******************************************" << endl;
 	cout << "* Bem vindo ao nosso jogo de adivinhação *" << endl;	
 	cout << "******************************************" << endl;
 
-	const int NUMERO_SECRETO = 42;
+	int numero_de_tentativas;
+	cout << "Escolha o nível de dificuldade:" << endl;
+	cout << "(F) Fácil (M) Médio (D) Dificil" << endl << endl;
+
+	cout << "Escolha: ";
+	char dificuldade;
+	cin >> dificuldade;
+
+	if(dificuldade == 'F'){
+		numero_de_tentativas = 20;
+	}
+	else if (dificuldade == 'M'){
+		numero_de_tentativas = 15;
+	}
+	else {
+		numero_de_tentativas = 6;
+	}
+
+	srand(time(0));
+	const int NUMERO_SECRETO = rand()%100;
 
 	bool nao_acertou = true;
-	int tentativas = 0;
 
 	double pontos = 1000.0;
 
-	while(nao_acertou){
-		tentativas++;
-
+	int tentativas;
+	for(tentativas = 1; tentativas <= numero_de_tentativas; tentativas++){
 		int chute;
 		cout << "Tentativa " << tentativas << endl;
 		cout << "Qual é o seu chute? ";
@@ -30,8 +46,8 @@ int main(){
 		if (acertou) {
 			cout << "Parabéns! Você acertou!" << endl;
 			cout << "Jogue de novo, você é um bom jogador!!" << endl;
-			
 			nao_acertou  = false;
+			break;
 		}
 		else if (maior) {
 			cout << "Seu chute foi maior que o número secreto" << endl;
@@ -44,11 +60,15 @@ int main(){
 		pontos = pontos - pontos_perdidos;
 	}
 
-    cout << "Fim de jogo!" << endl;
-	cout << "Você acertou em " << tentativas << " tentativas" << endl;
+	cout << "Fim de jogo!" << endl;
 
-    cout.precision(2);  
-	cout << fixed;
-	cout << "Pontuação: " << pontos << endl;
-	
+	if(nao_acertou){
+		cout << "Você perdeu! Tente de novo!" << endl;
+	}
+	else {
+		cout << "Você acertou em " << tentativas << " tentativas" << endl;
+		cout.precision(2);
+		cout << fixed;
+		cout << "Pontuação: " << pontos << endl;
+	}
 }

@@ -25,7 +25,7 @@ int main(){
 
 		if (acertou) {
 			cout << "Parabéns! Você acertou!" << endl;
-			cout << "Jogue de novo, voce e um bom jogador!!" << endl;
+			cout << "Jogue de novo, você é um bom jogador!!" << endl;
 			
 			nao_acertou  = false;
 		}

@@ -2,14 +2,13 @@
 using namespace std;
 
 int main(){
-	// imprime o cabecalho do nosso jogo
 	cout << "******************************************" << endl;
 	cout << "* Bem vindo ao nosso jogo de adivinhação *" << endl;	
 	cout << "******************************************" << endl;
 
 	int numero_de_tentativas;
-	cout << "Escolha o nivel de dificuldade:" << endl;
-	cout << "(F) Facil (M) Medio (D) Dificil" << endl << endl;
+	cout << "Escolha o nível de dificuldade:" << endl;
+	cout << "(F) Fácil (M) Médio (D) Dificil" << endl << endl;
 
 	cout << "Escolha: ";
 	char dificuldade;
@@ -24,7 +23,6 @@ int main(){
 	else {
 		numero_de_tentativas = 6;
 	}
-
 
 	const int NUMERO_SECRETO = 42;
 
