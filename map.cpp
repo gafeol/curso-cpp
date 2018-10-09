@@ -22,9 +22,9 @@ int main (){
     precos["tv"] = 1000;
 
     cout << endl << "=== Mercadinho Alura ===" << endl;
-    cout << "Preco da bolacha no mercado alura: " << precos["bolacha"] << endl;
-    cout << "Preco da pao no mercado alura: " << precos["pao"] << endl;
-    cout << "Preco da tv no mercado alura: " << precos["tv"] << endl;
+    cout << "Preco da bolacha: " << precos["bolacha"] << endl;
+    cout << "Preco da pao: " << precos["pao"] << endl;
+    cout << "Preco da tv: " << precos["tv"] << endl;
     cout << endl;
 
 
