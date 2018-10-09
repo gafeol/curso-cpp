@@ -39,7 +39,7 @@ int main(){
 			cout << "Seu chute foi menor que o número secreto" << endl;
 		}
 
-		double pontos_perdidos = (chute - NUMERO_SECRETO)/2;
+		double pontos_perdidos = abs(chute - NUMERO_SECRETO)/2;
 		pontos = pontos - pontos_perdidos;
 	}
 
