@@ -11,5 +11,5 @@ bool acertou();
 bool nao_acertou();
 bool enforcou();
 bool nao_enforcou();
-bool ja_chutou(char letra);
+bool chutou(char letra);
 bool nao_chutou(char letra);

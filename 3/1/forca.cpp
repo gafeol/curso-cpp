@@ -5,7 +5,7 @@
 using namespace std;
 
 string palavra_secreta;
-map<char, bool> ja_chutou;
+map<char, bool> chutou;
 int erros;
 
 bool letra_existe(char chute){
@@ -19,7 +19,7 @@ bool letra_existe(char chute){
 
 bool nao_ganhou(){
     for(int a=0;a<palavra_secreta.size();a++){
-        if(!ja_chutou[palavra_secreta[a]]){
+        if(!chutou[palavra_secreta[a]]){
             return true;
         }
     }
@@ -65,7 +65,7 @@ int main() {
 
     while(jogo_continua()){
         for(int i=0;i<palavra_secreta.size();i++){
-            if(ja_chutou[palavra_secreta[i]]){
+            if(chutou[palavra_secreta[i]]){
                 cout << palavra_secreta[i] << " ";
             }
             else{
@@ -78,7 +78,7 @@ int main() {
         cout << "Qual letra? ";
         cin >> chute;
 
-        ja_chutou[chute] = true;
+        chutou[chute] = true;
 
         if(letra_existe(chute)){
             cout << "Você acertou! A letra " << chute << " aparece na palavra." << endl;

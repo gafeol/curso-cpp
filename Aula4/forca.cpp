@@ -20,7 +20,7 @@ void chuta() {
     chutes.push_back(chute);
 }
 
-bool ja_chutou(char letra) {
+bool chutou(char letra) {
     for(int j = 0; j < chutes.size(); j++) {
         if(chutes[j] == letra) {
             return true;
@@ -34,7 +34,7 @@ void desenha_forca() {
     cout << "Você já deu " << chutes.size() << " chutes" << endl;
 
     for(int i = 0; i < PALAVRA_SECRETA.size(); i++) {
-        if(ja_chutou(PALAVRA_SECRETA[i])) {
+        if(chutou(PALAVRA_SECRETA[i])) {
             cout << PALAVRA_SECRETA[i] << " ";
         } else {
             cout << "_ ";

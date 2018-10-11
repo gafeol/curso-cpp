@@ -1,11 +1,12 @@
 #include <iostream> 
 #include <string>
 #include <map>
+#include <vector>
 using namespace std;
 
 const string PALAVRA_SECRETA = "MELANCIA";
-map<char, bool> ja_chutou;
-int erros;
+map<char, bool> chutou;
+vector<char> chutes_errados;
 
 bool letra_existe(char chute){
     for(char letra : PALAVRA_SECRETA){
@@ -17,8 +18,8 @@ bool letra_existe(char chute){
 }
 
 bool nao_ganhou(){
-    for(int a=0;a<PALAVRA_SECRETA.size();a++){
-        if(!ja_chutou[PALAVRA_SECRETA[a]]){
+    for(char letra : PALAVRA_SECRETA){
+        if(!chutou[letra]){
             return true;
         }
     }
@@ -27,7 +28,7 @@ bool nao_ganhou(){
 
 
 bool nao_enforcou(){
-    return erros < 5;
+    return chutes_errados.size() < 5;
 }
 
 bool jogo_continua(){
@@ -39,7 +40,7 @@ int main() {
 
     while(jogo_continua()){
         for(int i=0;i<PALAVRA_SECRETA.size();i++){
-            if(ja_chutou[PALAVRA_SECRETA[i]]){
+            if(chutou[PALAVRA_SECRETA[i]]){
                 cout << PALAVRA_SECRETA[i] << " ";
             }
             else{
@@ -52,14 +53,14 @@ int main() {
         cout << "Qual letra? ";
         cin >> chute;
 
-        ja_chutou[chute] = true;
+        chutou[chute] = true;
 
         if(letra_existe(chute)){
             cout << "Você acertou! A letra " << chute << " aparece na palavra." << endl;
         }
         else{
             cout << "Você errou! A letra " << chute << " não aparece na palavra." << endl;
-            erros++;
+            chutes_errados.push_back(chute);
         }
     } 
 

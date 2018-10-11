@@ -5,7 +5,7 @@
 using namespace std;
 
 const string PALAVRA_SECRETA = "MELANCIA";
-map<char, bool> ja_chutou;
+map<char, bool> chutou;
 vector<char> chutes_errados;
 
 bool letra_existe(char chute){
@@ -31,7 +31,7 @@ int main() {
         cout << endl;
 
         for(int i=0;i<PALAVRA_SECRETA.size();i++){
-            if(ja_chutou[PALAVRA_SECRETA[i]]){
+            if(chutou[PALAVRA_SECRETA[i]]){
                 cout << PALAVRA_SECRETA[i] << " ";
             }
             else{
@@ -44,7 +44,7 @@ int main() {
         cout << "Qual letra? ";
         cin >> chute;
 
-        ja_chutou[chute] = true;
+        chutou[chute] = true;
 
         if(letra_existe(chute)){
             cout << "Você acertou! A letra " << chute << " aparece na palavra." << endl;

@@ -13,7 +13,7 @@ bool ganhou();
 bool nao_ganhou();
 bool enforcou();
 bool nao_enforcou();
-bool ja_chutou(char letra);
+bool chutou(char letra);
 bool nao_chutou(char letra);
 bool letra_existe(char letra);
 int chutes_errados();

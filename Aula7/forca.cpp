@@ -42,7 +42,7 @@ bool nao_enforcou() {
 
 bool ganhou() {
     for(int i = 0; i < palavra_secreta.size(); i++) {
-        if(!ja_chutou(palavra_secreta[i])) {
+        if(!chutou(palavra_secreta[i])) {
             return false;
         }
     }
@@ -81,7 +81,7 @@ void chuta() {
     chutes.push_back(chute);
 }
 
-bool ja_chutou(char letra) {
+bool chutou(char letra) {
     for(int j = 0; j < chutes.size(); j++) {
         if(chutes[j] == letra) {
             return true;
@@ -91,7 +91,7 @@ bool ja_chutou(char letra) {
 }
 
 bool nao_chutou(char letra){
-    return !ja_chutou(letra);
+    return !chutou(letra);
 }
 
 void desenha_forca() {
@@ -109,7 +109,7 @@ void desenha_forca() {
     printf("\n\n");
 
     for(int i = 0; i < palavra_secreta.size(); i++) {
-        if(ja_chutou(palavra_secreta[i])) {
+        if(chutou(palavra_secreta[i])) {
             cout << palavra_secreta[i] << " ";
         } else {
             cout << "_ ";
