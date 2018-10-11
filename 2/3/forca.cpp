@@ -39,6 +39,12 @@ int main() {
     cout << PALAVRA_SECRETA << endl;
 
     while(jogo_continua()){
+        cout << "Chutes errados: ";
+        for(char letra: chutes_errados){
+            cout << letra << " ";
+        }
+        cout << endl;
+
         for(int i=0;i<PALAVRA_SECRETA.size();i++){
             if(chutou[PALAVRA_SECRETA[i]]){
                 cout << PALAVRA_SECRETA[i] << " ";

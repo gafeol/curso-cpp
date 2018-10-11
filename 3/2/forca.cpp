@@ -90,41 +90,53 @@ void adiciona_palavra(){
     }
 }
 
-int main() {
-    escolhe_palavra();
-
-    cout << palavra_secreta << endl;
-
-    while(jogo_continua()){
+void imprime_chutes_errados(){
+    if (!chutes_errados.empty()){
         cout << "Chutes errados: ";
-        for(char letra: chutes_errados){
+        for (char letra : chutes_errados){
             cout << letra << " ";
         }
         cout << endl;
+    }
+}
 
-        for(char letra : palavra_secreta){
-            if(chutou[letra]){
-                cout << letra << " ";
-            }
-            else{
-                cout << "_ ";
-            }
-        }
-        cout << endl;
-
-        char chute;
-        cout << "Qual letra? ";
-        cin >> chute;
-
-        chutou[chute] = true;
-
-        if(letra_existe(chute)){
-            cout << "Você acertou! A letra " << chute << " aparece na palavra." << endl;
+void imprime_palavra(){
+    for(char letra : palavra_secreta){
+        if(chutou[letra]){
+            cout << letra << " ";
         }
         else{
-            cout << "Você errou! A letra " << chute << " não aparece na palavra." << endl;
-            chutes_errados.push_back(chute);
+            cout << "_ ";
         }
+    }
+    cout << endl;
+}
+
+void chuta(){
+    char chute;
+    cout << "Qual letra? ";
+    cin >> chute;
+
+    chutou[chute] = true;
+
+    if(letra_existe(chute)){
+        cout << "Você acertou! A letra " << chute << " aparece na palavra." << endl;
+    }
+    else{
+        cout << "Você errou! A letra " << chute << " não aparece na palavra." << endl;
+        chutes_errados.push_back(chute);
+    }
+}
+
+int main() {
+    escolhe_palavra();
+
+    while(jogo_continua()){
+        imprime_chutes_errados();
+
+        imprime_palavra();
+
+        chuta();
     } 
 
     if(nao_ganhou()){
