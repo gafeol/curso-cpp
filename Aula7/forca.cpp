@@ -8,6 +8,7 @@ using namespace std;
 
 string palavra_secreta;
 vector<char> chutes;
+int erros;
 
 bool letra_existe(char letra) {
     for(int j = 0; j < palavra_secreta.size(); j++) {
@@ -171,6 +172,7 @@ void adiciona_palavra() {
         }
         else{
             cout << "Banco de dados de palavras não disponível" << endl << endl;
+            exit(0);
         }
     }
 }

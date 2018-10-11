@@ -1,10 +1,12 @@
 #include <iostream> 
 #include <string>
 #include <map>
+#include <vector>
 using namespace std;
 
 const string PALAVRA_SECRETA = "MELANCIA";
 map<char, bool> ja_chutou;
+vector<char> chutes_errados;
 
 bool letra_existe(char chute){
     for(char letra : PALAVRA_SECRETA){
@@ -22,9 +24,15 @@ int main() {
     bool nao_enforcou = true;
     
     while(nao_ganhou && nao_enforcou){
-        for(char letra : PALAVRA_SECRETA){
-            if(ja_chutou[letra]){
-                cout << letra << " ";
+        cout << "Chutes errados: ";
+        for(char letra: chutes_errados){
+            cout << letra << " ";
+        }
+        cout << endl;
+
+        for(int i=0;i<PALAVRA_SECRETA.size();i++){
+            if(ja_chutou[PALAVRA_SECRETA[i]]){
+                cout << PALAVRA_SECRETA[i] << " ";
             }
             else{
                 cout << "_ ";
@@ -43,6 +51,7 @@ int main() {
         }
         else{
             cout << "Você errou! A letra " << chute << " não aparece na palavra." << endl;
+            chutes_errados.push_back(chute);
         }
     } 
 }
