@@ -2,6 +2,7 @@
 #include <map>
 #include <fstream>
 #include <vector>
+#include <string> 
 using namespace std;
 
 string palavra_secreta;
@@ -35,25 +36,54 @@ bool jogo_continua(){
     return nao_ganhou() && nao_enforcou();
 }
 
-void escolhe_palavra(){
-    ifstream arquivo_input;
-    arquivo_input.open(ARQUIVO_PALAVRAS);
+vector<string> le_arquivo(){
+    vector<string> palavras;
 
-    if (arquivo_input.is_open()) {
+    ifstream arquivo;
+    arquivo.open(ARQUIVO_PALAVRAS);
+
+    if (arquivo.is_open()) {
         int quantidade_palavras;
-        arquivo_input >> quantidade_palavras;
+        arquivo >> quantidade_palavras;
 
-        srand(time(NULL));
-        int linha_escolhida = rand() % quantidade_palavras;
         string palavra_lida;
-        for (int i = 0; i <= linha_escolhida; i++){
-            arquivo_input >> palavra_lida;
+        for (int i = 0; i < quantidade_palavras; i++){
+            arquivo >> palavra_lida;
+            palavras.push_back(palavra_lida);
         }
-        palavra_secreta = palavra_lida;
-        arquivo_input.close();
+        arquivo.close();
+
+        return palavras;
     }
     else{
         cout << "Não foi possível abrir o banco de palavras!" << endl;
+        exit(0);
+    }
+}
+
+void sorteia_palavra(){
+    vector<string> palavras = le_arquivo();
+
+    srand(time(NULL));
+    int linha_escolhida = rand() % palavras.size();
+
+    palavra_secreta = palavras[linha_escolhida];
+}
+
+void salva_arquivo(vector<string> palavras){
+    ofstream arquivo;
+    arquivo.open(ARQUIVO_PALAVRAS);
+    if(arquivo.is_open()){
+        arquivo << palavras.size() << endl;
+
+        for(string palavra : palavras){
+            arquivo << palavra << endl;
+        }
+
+        arquivo.close();
+    }
+    else{
+        cout << "Banco de dados de palavras não disponível" << endl << endl;
         exit(0);
     }
 }
@@ -67,26 +97,9 @@ void adiciona_palavra(){
         string nova_palavra;
         cin >> nova_palavra;
 
-        fstream arquivo;
-        arquivo.open(ARQUIVO_PALAVRAS, ios::in | ios::out);
-        if(arquivo.is_open()){
-            int numero_palavras = 0;
-            arquivo >> numero_palavras;
-
-            numero_palavras++;
-
-            arquivo.seekp(0, ios_base::beg);
-            arquivo << numero_palavras << endl;
-
-            arquivo.seekp(0, ios_base::end);
-            arquivo << nova_palavra << endl;
-
-            arquivo.close();
-        }
-        else{
-            cout << "Banco de dados de palavras não disponível" << endl << endl;
-            exit(0);
-        }
+        vector<string> palavras = le_arquivo();
+        palavras.push_back(nova_palavra);
+        salva_arquivo(palavras);
     }
 }
 
@@ -129,7 +142,7 @@ void chuta(){
 }
 
 int main() {
-    escolhe_palavra();
+    sorteia_palavra();
 
     while(jogo_continua()){
         imprime_chutes_errados();
