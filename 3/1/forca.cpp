@@ -1,13 +1,14 @@
 #include <iostream> 
 #include <map>
-#include <fstream>
 #include <vector>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 string palavra_secreta;
 map<char, bool> chutou;
 vector<char> chutes_errados;
-const string ARQUIVO_PALAVRAS = "palavras.txt";
 
 bool letra_existe(char chute){
     for(char letra : palavra_secreta){
@@ -35,65 +36,38 @@ bool jogo_continua(){
     return nao_ganhou() && nao_enforcou();
 }
 
-void escolhe_palavra(){
-    ifstream arquivo_input;
-    arquivo_input.open(ARQUIVO_PALAVRAS);
+vector<string> le_arquivo(){
+    ifstream arquivo;
+    arquivo.open("palavras.txt");
 
-    if (arquivo_input.is_open()) {
-        int quantidade_palavras;
-        arquivo_input >> quantidade_palavras;
+    vector<string> palavras_no_arquivo;
 
-        srand(time(NULL));
-        int linha_escolhida = rand() % quantidade_palavras;
-        string palavra_lida;
-        for (int i = 0; i <= linha_escolhida; i++){
-            arquivo_input >> palavra_lida;
-        }
-        palavra_secreta = palavra_lida;
-        arquivo_input.close();
+    int quantidade_palavras;
+    arquivo >> quantidade_palavras;
+
+    string palavra_lida;
+    for(int i=0;i < quantidade_palavras;i++){
+        arquivo >> palavra_lida;
+
+        palavras_no_arquivo.push_back(palavra_lida);
     }
-    else{
-        cout << "Não foi possível abrir o banco de palavras!" << endl;
-        exit(0);
-    }
+
+    arquivo.close();
+
+    return palavras_no_arquivo;
 }
 
-void adiciona_palavra(){
-    cout << "Você deseja adicionar uma nova palavra ao banco (S/N)? ";
-    char resposta;
-    cin >> resposta;
-    if(resposta == 'S'){
-        cout << "Digite a nova palavra, em letras maiúsculas: ";
-        string nova_palavra;
-        cin >> nova_palavra;
+void sorteia_palavra(){
+    vector<string> palavras = le_arquivo();
 
-        fstream arquivo;
-        arquivo.open(ARQUIVO_PALAVRAS, ios::in | ios::out);
-        if(arquivo.is_open()){
-            int numero_palavras = 0;
-            arquivo >> numero_palavras;
+    srand(time(NULL));
+    int indice_sorteado = rand() % palavras.size();
 
-            numero_palavras++;
-
-            arquivo.seekp(0, ios_base::beg);
-            arquivo << numero_palavras << endl;
-
-            arquivo.seekp(0, ios_base::end);
-            arquivo << nova_palavra << endl;
-
-            arquivo.close();
-        }
-        else{
-            cout << "Banco de dados de palavras não disponível" << endl << endl;
-            exit(0);
-        }
-    }
+    palavra_secreta = palavras[indice_sorteado];
 }
 
 int main() {
-    escolhe_palavra();
-
-    cout << palavra_secreta << endl;
+    sorteia_palavra();
 
     while(jogo_continua()){
         cout << "Chutes errados: ";
@@ -132,6 +106,5 @@ int main() {
     }
     else{
         cout << endl << "Parabéns! Você ganhou!" << endl;
-        adiciona_palavra();
     }
 }

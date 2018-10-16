@@ -70,6 +70,7 @@ void sorteia_palavra(){
     palavra_secreta = palavras[linha_escolhida];
 }
 
+
 void salva_arquivo(vector<string> palavras){
     ofstream arquivo;
     arquivo.open(ARQUIVO_PALAVRAS);
